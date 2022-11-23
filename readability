@@ -1,0 +1,46 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <math.h>
+
+int main()
+{
+    string text = get_string("Text: ");
+    int lettersc = 0;
+    int wordc = 1;
+    int sentencec = 0;
+
+//считаем слова
+    for (int i = 0; i < strlen(text); i++)
+    {
+       if ((text[i] >= 'a' && text[i] <= 'z') || (text[i] >= 'A' && text[i] <= 'Z'))
+       {
+           lettersc++;
+       }
+       else if (text[i] == ' ')
+       {
+           wordc++;
+       }
+       else if (text[i] == '.' || text[i] == '!' || text[i] == '?')
+       {
+           sentencec++;
+       }
+    }
+    // printf("letters: %i; words: %i; sentences: %i\n", letterscount, wordcount, sentencecount);
+
+    float grade = 0.0588 * (100 * (float) lettersc / (float) wordc) - 0.296 *(100 * (float) sentencec / (float) wordc) - 15.8;
+    if (grade < 16 && grade >= 1)
+    {
+        printf("Grade %i\n", (int) round(grade));
+    }
+    else if (grade >= 16)
+    {
+        printf("Grade 16+\n");
+    }
+    else
+    {
+        printf("Before Grade 1\n");
+    }
+
+}
