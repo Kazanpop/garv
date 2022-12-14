@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    int a[8] = {44, 11, 17, -11, 62, 34, 6, 15};
+    int temp;
+    for (int i = 0; i < sizeof(a)/4; i++)
+    printf("%d  ",a[i]);
+    printf("\n");
+    for (int i = 0;i < sizeof(a)/4 - 1;i++) {     // для i от 0 до N-1  или для всех элементов до последнего
+        for (int j = sizeof(a)/4 - 1;j > i;j--) { // для j от N-1 до 0  или от предпоследнего до i
+            if (a[j - 1] > a[j]) {  // если предидующий элемент больше текущего
+                temp = a[j - 1];
+                a[j - 1] = a[j];    //      меняем местами
+                a[j] = temp;
+            }
+        }
+        for (int g = 0; g < sizeof(a)/4; g++)
+            printf("%d  ",a[g]);
+        printf("\n");
+    }
+}
